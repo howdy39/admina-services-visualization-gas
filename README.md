@@ -33,12 +33,6 @@ The name, version, description, and homepage properties are output as comments a
 ...
 ```
 
-### Google Apps Script Properties
-- ADMINA_API_KEY
-- ADMINA_ORGANIZATION_ID
-- WRITE_SHEET_NAME
-
-
 #### Open `src/appsscript.json`, change timeZone (optional)
 [Apps Script Manifests](https://developers.google.com/apps-script/concepts/manifests)
 ```
@@ -49,6 +43,11 @@ The name, version, description, and homepage properties are output as comments a
   "exceptionLogging": "STACKDRIVER"
 }
 ```
+
+#### Google Apps Script Properties
+- ADMINA_API_KEY
+- ADMINA_ORGANIZATION_ID
+- WRITE_SHEET_NAME
 
 
 ### Development and build project
