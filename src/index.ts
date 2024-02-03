@@ -2,7 +2,7 @@ import { AdminaService, listAllAccountsOfAServicesResonse } from './AdminaServic
 import { SheetService } from './SheetService';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function test() {
+function writeAccountsServices() {
   const ADMINA_ORGANIZATION_ID = Number(
     PropertiesService.getScriptProperties().getProperty('ADMINA_ORGANIZATION_ID'),
   );
@@ -43,11 +43,10 @@ function writeAccountsServices_(listAllAccountsOfAServices: listAllAccountsOfASe
     ]);
   });
 
-  // const WRITE_SHEET_ID = PropertiesService.getScriptProperties().getProperty('WRITE_SHEET_ID');
   const WRITE_SHEET_NAME = PropertiesService.getScriptProperties().getProperty('WRITE_SHEET_NAME');
 
   if (WRITE_SHEET_NAME === null) {
-    throw new Error(`not found properties WRITE_SHEET_ID or WRITE_SHEET_NAME`);
+    throw new Error(`not found properties WRITE_SHEET_NAME`);
   }
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const writeSheet = ss.getSheetByName(WRITE_SHEET_NAME);
