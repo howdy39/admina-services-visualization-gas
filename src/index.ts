@@ -1,7 +1,14 @@
-import { SheetService } from './SheetService';
+import { AdminaService } from './AdminaService';
+
+const ADMINA_ORGANIZATION_ID = Number(
+  PropertiesService.getScriptProperties().getProperty('ADMINA_ORGANIZATION_ID'),
+);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function createNewFile() {
-  const ss = SheetService.createInitialFile('New file');
-  ss.getRange('A2').setValue('Happy gas!');
+function test() {
+  const services = AdminaService.listServices(ADMINA_ORGANIZATION_ID);
+  services.forEach((service) => {
+    console.log({ service });
+    AdminaService.listAllAccountsOfAServices(ADMINA_ORGANIZATION_ID, service.id);
+  });
 }
