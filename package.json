@@ -1,0 +1,59 @@
+{
+  "name": "admina-services-visualization-gas",
+  "version": "1.0.0",
+  "description": "Google Apps Script to visualize SaaS usage in Looker Studio using Admina API.",
+  "homepage": "https://github.com/howdy39/admina-services-visualization-gas",
+  "main": "build/index.js",
+  "license": "MIT",
+  "keywords": [
+    "gas",
+    "google-apps-script",
+    "clasp",
+    "admina",
+    "google looker studio"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "lint": "eslint --fix src/**/*.ts",
+    "test": "jest --passWithNoTests",
+    "bundle": "rollup --no-treeshake -c rollup.config.mjs",
+    "build": "npm run lint && npm run test && npm run clean && npm run bundle && cpx src/appsscript.json dist",
+    "push": "npm run build && clasp push"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/google-apps-script": "^1.0.79",
+    "@types/jest": "^29.5.12",
+    "@typescript-eslint/eslint-plugin": "^6.20.0",
+    "cpx": "^1.5.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "gts": "^5.2.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.2.4",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.9.6",
+    "rollup-plugin-cleanup": "^3.2.1",
+    "rollup-plugin-license": "^3.2.0",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.3.3"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(src/.+(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  }
+}
