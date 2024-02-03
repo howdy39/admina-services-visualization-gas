@@ -92,10 +92,6 @@ export class AdminaService {
       nextCursor = content.meta.nextCursor;
     } while (nextCursor);
 
-    allAccounts.forEach((account) => {
-      console.log({ account });
-    });
-
     return allAccounts;
   }
 }
