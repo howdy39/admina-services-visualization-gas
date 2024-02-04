@@ -18,6 +18,9 @@ https://docs.itmc.i.moneyforward.com/
 npm install
 ```
 
+### Make a Google Apps script
+Make a Google Apps Script with a spreadsheet container bound script!
+
 ### Configuration
 #### Open `.clasp.json`, change scriptId
 What is scriptId ? https://github.com/google/clasp#scriptid-required
