@@ -44,7 +44,7 @@ The name, version, description, and homepage properties are output as comments a
 }
 ```
 
-#### Google Apps Script Properties
+#### Set Google Apps Script Properties
 - ADMINA_API_KEY
 - ADMINA_ORGANIZATION_ID
 - WRITE_SHEET_NAME
