@@ -67,3 +67,13 @@ function writeAccountsServices_(listAllAccountsOfAServices: listAllAccountsOfASe
 
   SheetService.writeAccountsServices(writeSheet, writeValues);
 }
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function setTriggers() {
+  ScriptApp.newTrigger('writeAccountsServices')
+    .timeBased()
+    .everyDays(1)
+    .atHour(7)
+    .nearMinute(0)
+    .create();
+}
