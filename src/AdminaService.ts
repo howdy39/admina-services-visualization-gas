@@ -6,10 +6,15 @@ export interface listServicesResonse {
 
 export interface listAllAccountsOfAServicesResonse {
   email: string;
+  displayName: string;
+  status: string;
   employeeStatus: string;
+  lastActivity: string;
   serviceId: number;
   serviceName: string;
+  workspaceId: number;
   workspaceName: string;
+  lastExecutionStatus: string;
   lastExecutionTime: string;
 }
 
@@ -68,23 +73,34 @@ export class AdminaService {
       if (nextCursor) {
         url = `${url}&cursor=${nextCursor}`;
       }
+      console.log({ url });
       const response = UrlFetchApp.fetch(url, params);
       const content = JSON.parse(response.getContentText('UTF-8'));
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       content.items.forEach((item: any) => {
         const email = item.email;
+        const displayName = item.displayName;
+        const status = item.status;
         const employeeStatus = item.employeeStatus;
+        const lastActivity = item.lastActivity;
         const serviceId = item.workspace.service.id;
         const serviceName = item.workspace.service.name;
-        const lastExecutionTime = item.workspace.lastExecutionTime;
+        const workspaceId = item.workspace.id;
         const workspaceName = item.workspace.workspaceName;
+        const lastExecutionStatus = item.workspace.lastExecutionStatus;
+        const lastExecutionTime = item.workspace.lastExecutionTime;
         allAccounts.push({
           email,
+          displayName,
+          status,
           employeeStatus,
+          lastActivity,
           serviceId,
           serviceName,
+          workspaceId,
           workspaceName,
+          lastExecutionStatus,
           lastExecutionTime,
         });
       });

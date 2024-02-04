@@ -25,20 +25,30 @@ function writeAccountsServices_(listAllAccountsOfAServices: listAllAccountsOfASe
   const writeValues: any[] = [
     [
       'メールアドレス',
+      '表示名',
+      'ステータス',
       '従業員ステータス',
+      '最終利用日',
       'サービスID',
       'サービス名',
+      'ワークスペースID',
       'ワークスペース名',
+      '最終取得ステータス',
       '最新取得日',
     ],
   ];
   listAllAccountsOfAServices.forEach((ac) => {
     writeValues.push([
       ac.email,
+      ac.displayName,
+      ac.status,
       ac.employeeStatus,
+      ac.lastActivity,
       ac.serviceId,
       ac.serviceName,
+      ac.workspaceId,
       ac.workspaceName,
+      ac.lastExecutionStatus,
       ac.lastExecutionTime,
     ]);
   });
@@ -56,4 +66,14 @@ function writeAccountsServices_(listAllAccountsOfAServices: listAllAccountsOfASe
   }
 
   SheetService.writeAccountsServices(writeSheet, writeValues);
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function setTriggers() {
+  ScriptApp.newTrigger('writeAccountsServices')
+    .timeBased()
+    .everyDays(1)
+    .atHour(7)
+    .nearMinute(0)
+    .create();
 }
