@@ -1,7 +1,8 @@
 # admina-services-visualization-gas
 Google Apps Script to visualize SaaS usage in Looker Studio using Admina API.
 
-[Admina](https://admina.moneyforward.com/)  
+What is Admina ?  
+https://admina.moneyforward.com/
 
 ## Prerequisites
 - [Node.js](https://nodejs.org/)
