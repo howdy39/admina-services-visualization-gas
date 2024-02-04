@@ -1,7 +1,7 @@
 {
   "name": "admina-services-visualization-gas",
   "version": "1.0.0",
-  "description": "Google Apps Script to visualize SaaS usage in Looker Studio using Admina API.",
+  "description": "Google Apps scripts that use the Admina API to export data to a spreadsheet for visualization of SaaS usage in Looker Studio and other applications.",
   "homepage": "https://github.com/howdy39/admina-services-visualization-gas",
   "main": "build/index.js",
   "license": "MIT",
