@@ -4,6 +4,10 @@ Google Apps Script to visualize SaaS usage in Looker Studio using Admina API.
 What is Admina ?  
 https://admina.moneyforward.com/
 
+Where is Admina API docs?  
+https://docs.itmc.i.moneyforward.com/
+
+
 ## Prerequisites
 - [Node.js](https://nodejs.org/)
 - [google/clasp](https://github.com/google/clasp)
