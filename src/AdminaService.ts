@@ -18,6 +18,18 @@ export interface listAllAccountsOfAServicesResonse {
   lastExecutionTime: string;
 }
 
+export interface listWorkspacesResonse {
+  id: number;
+  organizationId: number;
+  workspaceName: string;
+  lastUsedAt: Date;
+  isCustomWorkspace: boolean;
+  peopleInCharge_primaryEmail?: string;
+  peopleInCharge_displayName?: string;
+  meta_id?: number;
+  meta_note?: string;
+}
+
 export class AdminaService {
   static listServices(organizationId: number): listServicesResonse[] {
     const basedUrl = `https://api.itmc.i.moneyforward.com/api/v1/organizations/${organizationId}/services/`;
@@ -109,5 +121,50 @@ export class AdminaService {
     } while (nextCursor);
 
     return allAccounts;
+  }
+
+  static listWorkspaces(organizationId: number): listWorkspacesResonse[] {
+    // workspacesはlimit等の件数絞りはなく、全件取得の模様
+    const url = `https://api.itmc.i.moneyforward.com/api/v1/organizations/${organizationId}/workspaces/`;
+    const params: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${ADMINA_API_KEY}`,
+      },
+    };
+
+    const allWorkspaces: listWorkspacesResonse[] = [];
+
+    const response = UrlFetchApp.fetch(url, params);
+    const content = JSON.parse(response.getContentText('UTF-8'));
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    content.forEach((w: any) => {
+      const workspace: listWorkspacesResonse = {
+        id: w.id,
+        organizationId: w.organizationId,
+        workspaceName: w.workspaceName,
+        lastUsedAt: w.lastUsedAt,
+        isCustomWorkspace: w.isCustomWorkspace,
+      };
+
+      if (w.peopleInCharge) {
+        workspace.peopleInCharge_primaryEmail = w.peopleInCharge
+          .map((pi: any) => pi.primaryEmail) // eslint-disable-line @typescript-eslint/no-explicit-any
+          .join(',');
+        workspace.peopleInCharge_displayName = w.peopleInCharge
+          .map((pi: any) => pi.displayName) // eslint-disable-line @typescript-eslint/no-explicit-any
+          .join(',');
+      }
+
+      if (w.workspaceMeta) {
+        workspace.meta_id = w.workspaceMeta.id;
+        workspace.meta_note = w.workspaceMeta.note;
+      }
+
+      allWorkspaces.push(workspace);
+    });
+
+    return allWorkspaces;
   }
 }

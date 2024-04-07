@@ -1,7 +1,7 @@
 import Spreadsheet = GoogleAppsScript.Spreadsheet.Spreadsheet;
 
 export class SheetService {
-  static writeAccountsServices(
+  static writeValues(
     writeSheet: GoogleAppsScript.Spreadsheet.Sheet,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     writeValues: any[][],
